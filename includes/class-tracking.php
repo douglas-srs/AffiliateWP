@@ -536,7 +536,7 @@ class Affiliate_WP_Tracking {
 			$affiliate_id = $this->get_affiliate_id();
 		}
 
-		$is_self = is_user_logged_in() && get_current_user_id() == affiliate_wp()->affiliates->get_column( 'user_id', $affiliate_id );
+		$is_self = (is_user_logged_in() && get_current_user_id() == affiliate_wp()->affiliates->get_column( 'user_id', $affiliate_id )) && (apply_filters( 'affwp_is_customer_email_affiliate_email', $ret, $email, $this->affiliate_id ));
 
 		$active = 'active' === affwp_get_affiliate_status( $affiliate_id );
 
